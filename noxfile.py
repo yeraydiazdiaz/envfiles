@@ -2,7 +2,6 @@ import nox
 
 
 nox.options.stop_on_first_error = True
-nox.options.reuse_existing_virtualenvs = True
 
 source_files = ("src/envfiles", "tests", "setup.py", "noxfile.py")
 
