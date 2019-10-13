@@ -62,7 +62,6 @@ INSTALL_REQUIRES = load_requirements_file("base.txt")
 EXTRAS_REQUIRE = {"tests": load_requirements_file("test.txt")}
 EXTRAS_REQUIRE["dev"] = deepcopy(EXTRAS_REQUIRE["tests"])
 EXTRAS_REQUIRE["dev"].extend(load_requirements_file("dev.txt"))
-print(EXTRAS_REQUIRE)
 VERSION = find_meta("version")
 URL = find_meta("url")
 LONG = read("README.md")
@@ -91,5 +90,4 @@ if __name__ == "__main__":
         install_requires=INSTALL_REQUIRES,
         extras_require=EXTRAS_REQUIRE,
         include_package_data=True,
-        entry_points={"console_scripts": ["envfiles = envfiles.cli:cli"]},
     )
