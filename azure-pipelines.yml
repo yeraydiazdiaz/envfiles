@@ -1,0 +1,42 @@
+---
+trigger:
+  - master
+
+jobs:
+  - job: 'Test'
+    pool:
+      vmImage: 'ubuntu-latest'
+    strategy:
+      matrix:
+        py36:
+          python.version: '3.6'
+          nox.session: test-3.6
+        py37:
+          python.version: '3.7'
+          nox.session: test-3.7
+        py38:
+          python.version: '3.8'
+          nox.session: test-3.8
+        lint:
+          python.version: '3.7'
+          nox.session: check
+
+    steps:
+      - task: UsePythonVersion@0
+        displayName: Get Python for Python tools.
+        inputs:
+          versionSpec: '3.7'
+          addToPath: false
+        name: pyTools
+
+      - script: $(pyTools.pythonLocation)/bin/pip install --upgrade nox
+        displayName: Install Python-based tools.
+
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: '$(python.version)'
+          architecture: 'x64'
+        displayName: Use cached Python $(python.version) for tests.
+
+      - script: $(pyTools.pythonLocation)/bin/nox -s $(nox.session)
+        displayName: run nox -s $(nox.session)
