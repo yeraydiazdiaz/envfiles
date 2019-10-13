@@ -6,5 +6,7 @@ mypy
 pdbpp
 pip-tools
 twine
+setuptools
+wheel
 isort
 devtools[pygments]

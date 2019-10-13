@@ -4,6 +4,7 @@
 **/__pycache__
 .coverage
 dist/
+build/
 
 dev/
 .vscode
