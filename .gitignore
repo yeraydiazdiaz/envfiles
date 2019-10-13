@@ -1,0 +1,10 @@
+.python-version
+*.egg-info
+.mypy_cache
+**/__pycache__
+.coverage
+dist/
+
+dev/
+.vscode
+*.code-workspace

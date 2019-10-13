@@ -1,0 +1,10 @@
+-r test.txt
+black
+flake8
+ipython
+mypy
+pdbpp
+pip-tools
+twine
+isort
+devtools[pygments]
