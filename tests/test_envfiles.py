@@ -14,6 +14,7 @@ def test_path_does_not_exist():
     "contents,expected",
     [
         ("FOO=bar", {"FOO": "bar"}),
+        ("EMPTY=", {"EMPTY": ""}),
         ('FOO=bar\nBAR="baz"', {"FOO": "bar", "BAR": "baz"}),
         ('FOO=bar\n# comment\nBAR="baz"\n\n', {"FOO": "bar", "BAR": "baz"}),
     ],

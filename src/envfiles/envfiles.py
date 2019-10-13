@@ -64,7 +64,7 @@ def process_env_line(line: str) -> typing.Tuple[str, str]:
 
 def process_value(value: str) -> str:
     """Returns a processed value for an environment variable."""
-    if value[0] == value[-1] == '"':
+    if len(value) > 0 and value[0] == value[-1] == '"':
         return value[1:-1]
 
     return value
