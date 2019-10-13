@@ -10,3 +10,4 @@ setuptools
 wheel
 isort
 devtools[pygments]
+nox

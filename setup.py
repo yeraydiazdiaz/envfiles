@@ -54,13 +54,15 @@ CLASSIFIERS = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 INSTALL_REQUIRES = load_requirements_file("base.txt")
-EXTRAS_REQUIRE = {"tests": load_requirements_file("test.txt")}
-EXTRAS_REQUIRE["dev"] = deepcopy(EXTRAS_REQUIRE["tests"])
+EXTRAS_REQUIRE = {"test": load_requirements_file("test.txt")}
+EXTRAS_REQUIRE["dev"] = deepcopy(EXTRAS_REQUIRE["test"])
 EXTRAS_REQUIRE["dev"].extend(load_requirements_file("dev.txt"))
 VERSION = find_meta("version")
 URL = find_meta("url")
@@ -84,7 +86,7 @@ if __name__ == "__main__":
         long_description_content_type="text/markdown",
         packages=PACKAGES,
         package_dir={"": "src"},
-        python_requires=">=3.7.*",
+        python_requires=">=3.6.*",
         zip_safe=False,
         classifiers=CLASSIFIERS,
         install_requires=INSTALL_REQUIRES,

@@ -1,6 +1,7 @@
-from envfiles.envfiles import load, EnvFilesError
+from envfiles.envfiles import EnvFilesError, load
 
-__version__ = "0.1.0.dev0"
+
+__version__ = "0.1.0"
 
 __title__ = "envfiles"
 __description__ = "Simple layered loading of env files for your 12-factor app."
