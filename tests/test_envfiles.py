@@ -67,3 +67,14 @@ def test_nested_env_file_fails_if_self_referencial(mocker):
 def test_malformed_line(mocker):
     with pytest.raises(envfiles.EnvFilesError):
         envfiles.process_env_line("FOO")
+
+
+@pytest.mark.integration
+def test_layered_env_files():
+    env_vars = envfiles.load_env_files("tests/assets/test.env")
+
+    assert env_vars == {
+        "CACHE_ENABLED": "0",
+        "DATABASE_HOST": "localhost",
+        "DATABASE_NAME": "myapp_test",
+    }

@@ -11,7 +11,7 @@ NESTED_ENV_FILE_PREFIX = "# >> "
 
 
 def load_env_files(
-    env_file_path: str, nested_prefix: str = NESTED_ENV_FILE_PREFIX
+    env_file_path: typing.Union[str, Path], nested_prefix: str = NESTED_ENV_FILE_PREFIX
 ) -> typing.Dict[str, str]:
     """Loads env files from a relative path to the current working directory.
 
@@ -41,7 +41,8 @@ def load_env_files(
                     raise EnvFilesError(
                         f"Self referencing nested path {nested_env_path}"
                     )
-                env_vars.update(load_env_files(nested_env_path))
+                relative_nested_path = path.parent / nested_env_path
+                env_vars.update(load_env_files(relative_nested_path))
             elif line.startswith("#") or not line:
                 continue
             else:

@@ -21,7 +21,10 @@ CACHE_ENABLED=0
 DATABASE_NAME=myapp_test
 ```
 
-And then define *one* environment variable, `ENV_FILE` in this example, with a
+Note the first line `# >> base.env`, the `# >> ` is an arbitrary prefix, the
+`base.env` is a path *relative to the file being read*.
+
+Then define *one* environment variable, for example `ENV_FILE`, containing a
 relative path to the env file you want to load:
 
 ```python
@@ -29,7 +32,7 @@ import envfiles
 
 env_vars = envfiles.load_env_files(os.getenv("ENV_FILE"))
 assert env_vars == {
-    "CACHE_ENABLED": "1",
+    "CACHE_ENABLED": "0",
     "DATABASE_HOST": "localhost",
     "DATABASE_NAME": "myapp_test",
 }
@@ -61,10 +64,10 @@ config = environ.to_config(MyConfig, environ=env_vars)
 ## Why?
 
 Frustration, mostly. I've had this issue more times than I can count. I've tried
-different libraries but none of them supported layering or they messed with the
-`os.environ` in surprising ways.
+different libraries but none of them supported layering or sort of did but
+messed with the `os.environ` in surprising ways.
 
-The idea behind `envfiles` is to solve reading layered env files and let you
+The idea behind `envfiles` is to just read layered env files and let you
 use whatever configuration solution you want. Configuration is the first
 thing your app does, it should be as quick and straightforward as possible.
 
