@@ -14,9 +14,9 @@ jobs:
         py37:
           python.version: '3.7'
           nox.session: test-3.7
-        py38:
-          python.version: '3.8'
-          nox.session: test-3.8
+        # py38:
+        #   python.version: '3.8'
+        #   nox.session: test-3.8
         lint:
           python.version: '3.7'
           nox.session: check
