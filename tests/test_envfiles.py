@@ -2,12 +2,12 @@ from io import StringIO
 
 import pytest
 
-from envfiles import envfiles
+import envfiles
 
 
 def test_path_does_not_exist():
     with pytest.raises(envfiles.EnvFilesError):
-        envfiles.load_env_files("path/to/nowhere")
+        envfiles.load("path/to/nowhere")
 
 
 @pytest.mark.parametrize(
@@ -22,7 +22,7 @@ def test_env_file(mocker, contents, expected):
     mocker.patch("envfiles.envfiles.open", return_value=StringIO(contents))
     mocker.patch("envfiles.envfiles.Path.exists", return_value=True)
 
-    env_vars = envfiles.load_env_files("some/path")
+    env_vars = envfiles.load("some/path")
 
     assert env_vars == expected
 
@@ -36,7 +36,7 @@ def test_nested_env_file(mocker):
     )
     mocker.patch("envfiles.envfiles.Path.exists", return_value=True)
 
-    env_vars = envfiles.load_env_files("some/path")
+    env_vars = envfiles.load("some/path")
 
     assert env_vars == {"FOO": "bar", "BAR": "baz"}
 
@@ -50,7 +50,7 @@ def test_nested_env_file_overrides_previous_values(mocker):
     )
     mocker.patch("envfiles.envfiles.Path.exists", return_value=True)
 
-    env_vars = envfiles.load_env_files("some/path")
+    env_vars = envfiles.load("some/path")
 
     assert env_vars == {"FOO": "bar", "BAR": "baz"}
 
@@ -61,17 +61,17 @@ def test_nested_env_file_fails_if_self_referencial(mocker):
     mocker.patch("envfiles.envfiles.Path.exists", return_value=True)
 
     with pytest.raises(envfiles.EnvFilesError):
-        envfiles.load_env_files("local.env")
+        envfiles.load("local.env")
 
 
 def test_malformed_line(mocker):
     with pytest.raises(envfiles.EnvFilesError):
-        envfiles.process_env_line("FOO")
+        envfiles.envfiles.process_env_line("FOO")
 
 
 @pytest.mark.integration
 def test_layered_env_files():
-    env_vars = envfiles.load_env_files("tests/assets/test.env")
+    env_vars = envfiles.load("tests/assets/test.env")
 
     assert env_vars == {
         "CACHE_ENABLED": "0",

@@ -1,3 +1,5 @@
+from envfiles.envfiles import load, EnvFilesError
+
 __version__ = "0.1.0.dev0"
 
 __title__ = "envfiles"
@@ -11,3 +13,5 @@ __email__ = "yeraydiazdiaz@gmail.com"
 
 __license__ = "Apache 2.0"
 __copyright__ = "Copyright (c) 2019 Yeray Díaz Díaz"
+
+__all__ = ["load", "EnvFilesError"]

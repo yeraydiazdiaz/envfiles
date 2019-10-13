@@ -55,7 +55,7 @@ import environ
 import envfiles
 from settings import MyConfig  # your environ-config Config class
 
-env_vars = envfiles.load_env_files(os.getenv("ENV_FILE"))
+env_vars = envfiles.load(os.getenv("ENV_FILE"))
 
 env_vars.update(os.environ)
 config = environ.to_config(MyConfig, environ=env_vars)
