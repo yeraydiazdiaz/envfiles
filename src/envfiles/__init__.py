@@ -9,5 +9,5 @@ __doc__ = __description__ + " <" + __uri__ + ">"
 __author__ = "Yeray Díaz Díaz"
 __email__ = "yeraydiazdiaz@gmail.com"
 
-__license__ = "MIT"
+__license__ = "Apache 2.0"
 __copyright__ = "Copyright (c) 2019 Yeray Díaz Díaz"
