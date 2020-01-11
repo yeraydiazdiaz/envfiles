@@ -6,6 +6,7 @@
 dist/
 build/
 .nox/
+env/local.env
 
 dev/
 .vscode
