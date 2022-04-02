@@ -1,8 +1,6 @@
-.PHONY: pin-requirements install-dev
-.SILENT: pin-requirements install-dev
-
-pin-requirements:
-	pip-compile requirements/base.in --output-file requirements/base.txt
+.PHONY: install-dev
+.SILENT: install-dev
 
 install-dev:
+	pip install -U pip
 	pip install -e .[dev]
