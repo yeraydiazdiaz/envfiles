@@ -1,6 +1,10 @@
 # `envfiles` changelog
 
-Following semantic versioning.
+## 0.1.1
+
+- Added support for Python 3.9 and 3.10
+
+**Deprecation notice:** 0.1.1 will be the last version to support Python 3.6.
 
 ## 0.1.0
 
